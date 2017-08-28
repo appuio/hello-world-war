@@ -11,6 +11,13 @@ pipeline {
     }
 
     stages {
+        stage('Init') {
+            agent { label 'master' }
+            steps {
+                sh "env"
+            }
+        }
+
         stage('Build') {
             steps {
                 sh "env"
