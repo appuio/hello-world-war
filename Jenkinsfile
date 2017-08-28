@@ -6,6 +6,7 @@ pipeline {
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
+        skipDefaultCheckout()
     }
     triggers {
         pollSCM('H/5 * * * *')
@@ -15,6 +16,7 @@ pipeline {
         stage('Build') {
             agent { label 'maven' }
             steps {
+                checkout scm
                 sh "env"
                 sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                 stash name: "binsrc", includes: "target/*.war"
