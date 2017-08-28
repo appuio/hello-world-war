@@ -1,5 +1,5 @@
 pipeline {
-    agent { node 'maven' }
+    agent { label 'maven' }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
