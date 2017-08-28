@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh "env"
                 sh 'mvn -B -V -U -e clean verify -Dsurefire.useFile=false'
                 //archiveArtifacts 'target/*.?ar'
             }
